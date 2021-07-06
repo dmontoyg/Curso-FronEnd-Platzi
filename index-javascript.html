@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/dist/estilos-ejercicio1.css" />
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/code-ejercicioJS.js"></script>
 </head>
 <body>
     <header>
@@ -34,6 +35,21 @@
             <li><a href="#">CSS3</a></li>
         </ul>
     </nav>
+    <form action="">
+        <p>
+            <label for="titulo">Título</label>
+            <input placeholder="Ingresa el título" id="titulo" type="text" name="titulo">
+        </p>
+        <p>
+            <label for="autor">Autor</label>
+            <input placeholder="Ingresa el nombre del autor" id="autor" type="text" name="autor">
+        </p>
+        <p>
+            <label for="tag">Tag</label>
+            <input placeholder="Ingresa el tag" id="tag" type="text" name="tag">
+        </p>
+        <input value="Publicar" type="submit" />
+    </form>
     <section class="posts">
         <article class="post">
             <div class="descripcion">
@@ -167,6 +183,7 @@
         </h3>
     </footer>
     <script>
+        /* Funciones de manera optima con Jquery */
         function darBienvenida(){
             alert('Bienvenido');
         }
@@ -175,21 +192,36 @@
             console.log('Estoy haciendo algo importante');
         }
 
-        function atachar(obj, evento, funcion) {
-            if(obj.addEventListener){
-                obj.addEventListener(evento, funcion);
-            }else{
-                obj.attachEvent('on' + evento, funcion);
-            }
-        }
+        // function atachar(obj, evento, funcion) {
+        //     if(obj.addEventListener){
+        //         obj.addEventListener(evento, funcion);
+        //     }else{
+        //         obj.attachEvent('on' + evento, funcion);
+        //     }
+        // }
 
-        $(window)
-        .on('load', darBienvenida)
-        .on('load', hacerAlgoImportante);
-    
+        // Esto nos funciona cuando se termina de cargar toda la página
+
         $(function(){
-            
-        }
+            // Con la declaración de la variable, es una forma de realizar el ejercicio
+            // var publicar = document.getElementsByClassName('publicar')[0];
+            // $(publicar).on('click', darBienvenida);
+
+            // Pero tambien se puede con la siguiente forma:
+            // $('.publicar').on('click', darBienvenida);
+
+            $('.publicar')
+            .on('click', darBienvenida)
+            .on('click', function(){
+                console.log('Me hicieron click');
+            })
+
+            $(window)
+            .on('load', hacerAlgoImportante);
+
+            // Para que no salga el mensaje de alerta, lo  colocamos acá
+            $('.publicar').off('click', darBienvenida);
+        });
     </script>
 </body>
 </html>
